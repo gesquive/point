@@ -1,0 +1,27 @@
+# copy or hard link to
+#   Debian: /lib/systemd/system/point.service
+#   Ubuntu: /etc/systemd/system/point.service
+#
+# To start point once for USER use:
+#   systemctl start point@USER.service
+#
+# To start point on boot for USER use:
+#   systemctl enable point@USER.service
+#
+# Config will be placed in /etc/point/config.yml
+
+[Unit]
+Description=point webserver
+Documentation=https://github.com/gesquive/point
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/point
+User=point
+Group=point
+Type=simple
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

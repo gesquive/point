@@ -1,0 +1,28 @@
+# More info: https://github.com/gesquive/point
+# copy or hard link to
+#   Ubuntu: /etc/init/point.conf
+
+description "point webservice"
+
+start on (started network)
+stop on runlevel [!2345]
+
+respawn
+respawn limit 99 5
+
+script
+
+    export HOME="/srv"
+    echo $$ > /var/run/point.pid
+    exec /usr/local/bin/point
+
+end script
+
+pre-start script
+    echo "[`date '+%FT%TZ'`] starting service" >> /var/log/point.log
+end script
+
+pre-stop script
+    rm /var/run/point.pid
+    echo "[`date '+%FT%TZ'`] service stopping" >> /var/log/point.log
+end script
