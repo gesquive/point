@@ -1,0 +1,27 @@
+# copy or hard link to
+#   Debian: /lib/systemd/system/reflect.service
+#   Ubuntu: /etc/systemd/system/reflect.service
+#
+# To start reflect once for USER use:
+#   systemctl start reflect@USER.service
+#
+# To start reflect on boot for USER use:
+#   systemctl enable reflect@USER.service
+#
+# Config will be placed in /etc/reflect/config.yml
+
+[Unit]
+Description=reflect webserver
+Documentation=https://github.com/gesquive/reflect
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/reflect
+User=reflect
+Group=reflect
+Type=simple
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

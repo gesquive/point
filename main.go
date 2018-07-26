@@ -27,7 +27,7 @@ var debug bool
 var server *Server
 
 func main() {
-	displayVersion = fmt.Sprintf("point %s%s",
+	displayVersion = fmt.Sprintf("reflect %s%s",
 		version,
 		dirty)
 	Execute(displayVersion)
@@ -35,7 +35,7 @@ func main() {
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
-	Use:   "point",
+	Use:   "reflect",
 	Short: "A web client info server",
 	Long:  `A web API for client browser information`,
 	Run:   run,
@@ -59,7 +59,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "",
 		"Path to a specific config file (default \"./config.yml\")")
 	RootCmd.PersistentFlags().StringP("log-file", "l", "",
-		"Path to log file (default \"/var/log/point.log\")")
+		"Path to log file (default \"/var/log/reflect.log\")")
 
 	RootCmd.PersistentFlags().BoolVar(&showVersion, "version", false,
 		"Display the version number and exit")
@@ -75,7 +75,7 @@ func init() {
 		"Include debug statements in log output")
 	RootCmd.PersistentFlags().MarkHidden("debug")
 
-	viper.SetEnvPrefix("point")
+	viper.SetEnvPrefix("reflect")
 	viper.AutomaticEnv()
 	viper.BindEnv("log_file")
 	viper.BindEnv("address")
@@ -85,7 +85,7 @@ func init() {
 	viper.BindPFlag("web.address", RootCmd.PersistentFlags().Lookup("address"))
 	viper.BindPFlag("web.port", RootCmd.PersistentFlags().Lookup("port"))
 
-	viper.SetDefault("log_file", "/var/log/point.log")
+	viper.SetDefault("log_file", "/var/log/reflect.log")
 	viper.SetDefault("web.address", "0.0.0.0")
 	viper.SetDefault("web.port", 8080)
 }
@@ -98,8 +98,8 @@ func initConfig() {
 
 	viper.SetConfigName("config")              // name of config file (without extension)
 	viper.AddConfigPath(".")                   // add current directory as first search path
-	viper.AddConfigPath("$HOME/.config/point") // add home directory to search path
-	viper.AddConfigPath("/etc/point")          // add etc to search path
+	viper.AddConfigPath("$HOME/.config/reflect") // add home directory to search path
+	viper.AddConfigPath("/etc/reflect")          // add etc to search path
 	viper.AutomaticEnv()                       // read in environment variables that match
 
 	// If a config file is found, read it in.
@@ -154,7 +154,7 @@ func run(cmd *cobra.Command, args []string) {
 func getLogFilePath(defaultPath string) (logPath string) {
 	fi, err := os.Stat(defaultPath)
 	if err == nil && fi.IsDir() {
-		logPath = path.Join(defaultPath, "point.log")
+		logPath = path.Join(defaultPath, "reflect.log")
 	} else {
 		logPath = defaultPath
 	}

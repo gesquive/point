@@ -1,4 +1,4 @@
-package: github.com/gesquive/point
+package: github.com/gesquive/reflect
 import:
 - package: github.com/Sirupsen/logrus
   version: ~1.0.0

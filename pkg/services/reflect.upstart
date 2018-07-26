@@ -1,0 +1,28 @@
+# More info: https://github.com/gesquive/reflect
+# copy or hard link to
+#   Ubuntu: /etc/init/reflect.conf
+
+description "reflect webservice"
+
+start on (started network)
+stop on runlevel [!2345]
+
+respawn
+respawn limit 99 5
+
+script
+
+    export HOME="/srv"
+    echo $$ > /var/run/reflect.pid
+    exec /usr/local/bin/reflect
+
+end script
+
+pre-start script
+    echo "[`date '+%FT%TZ'`] starting service" >> /var/log/reflect.log
+end script
+
+pre-stop script
+    rm /var/run/reflect.pid
+    echo "[`date '+%FT%TZ'`] service stopping" >> /var/log/reflect.log
+end script
