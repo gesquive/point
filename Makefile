@@ -36,6 +36,9 @@ INSTALL_PATH=$(GOPATH)/src/${REPO_HOST_URL}/${OWNER}/${PROJECT_NAME}
 LOCAL_BIN=bin
 GOTEMP:=$(shell mktemp -d)
 
+export SHELL := /bin/bash
+export PATH := ${PWD}/${LOCAL_BIN}:${PATH}
+
 default: test build
 
 .PHONY: help
@@ -100,16 +103,22 @@ dist: build-dist package-dist ## Cross compile and package the full distribution
 fmt: ## Reformat the source tree with gofmt
 	find . -name '*.go' -not -path './.vendor/*' -exec gofmt -w=true {} ';'
 
+.PHONY: link
+link: $(INSTALL_PATH) ## Symlink this project into the GOPATH
+$(INSTALL_PATH):
+	@mkdir -p `dirname $(INSTALL_PATH)`
+	@ln -s $(PWD) $(INSTALL_PATH) >/dev/null 2>&1
+
 ${LOCAL_BIN}: 
 	@mkdir -p ${LOCAL_BIN}
 
 .PHONY: glide
 glide: bin/glide
+	@glide --version
 bin/glide: ${LOCAL_BIN}
 	@echo "Installing glide"
 	@export GOPATH=${GOTEMP} && ${GOCC} get -u github.com/Masterminds/glide
 	@cp ${GOTEMP}/bin/glide ${LOCAL_BIN}
-	@glide --version
 	@rm -rf ${GOTEMP}
 
 .PHONY: gox
@@ -117,15 +126,15 @@ gox: bin/gox
 bin/gox: ${LOCAL_BIN}
 	@echo "Installing gox"
 	@GOPATH=${GOTEMP} ${GOCC} get -u github.com/mitchellh/gox
-	@cp ${GOTEMP}/bin/gox ${LOCAL_BIN}/gox
+	@cp ${GOTEMP}/bin/gox ${LOCAL_BIN}
 	@rm -rf ${GOTEMP}
 
 .PHONY: gop
 gop: bin/gop
+	@gop --version
 bin/gop: ${LOCAL_BIN}
 	@echo "Installing gop"
 	@export GOPATH=${GOTEMP} && ${GOCC} get -u github.com/gesquive/gop
 	@cp ${GOTEMP}/bin/gop ${LOCAL_BIN}
-	@gop --version
 	@rm -rf ${GOTEMP}
 
