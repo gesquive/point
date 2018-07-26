@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 )
 
@@ -96,11 +96,11 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
-	viper.SetConfigName("config")              // name of config file (without extension)
-	viper.AddConfigPath(".")                   // add current directory as first search path
+	viper.SetConfigName("config")                // name of config file (without extension)
+	viper.AddConfigPath(".")                     // add current directory as first search path
 	viper.AddConfigPath("$HOME/.config/reflect") // add home directory to search path
 	viper.AddConfigPath("/etc/reflect")          // add etc to search path
-	viper.AutomaticEnv()                       // read in environment variables that match
+	viper.AutomaticEnv()                         // read in environment variables that match
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err != nil {
