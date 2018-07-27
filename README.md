@@ -10,7 +10,7 @@ It provides endpoints to see web client information like: public IP, proxy list,
 ## Installing
 
 ### Compile
-This project has been tested with go1.8+. Just run `go get -u github.com/gesquive/reflect` and the executable should be built for you automatically in your `$GOPATH`.
+This project has been tested with go1.9+. Just run `go get -u github.com/gesquive/reflect` and the executable should be built for you automatically in your `$GOPATH`.
 
 Optionally you can clone the repo and run `make install` to build and copy the executable to `/usr/local/bin/` with correct permissions.
 
