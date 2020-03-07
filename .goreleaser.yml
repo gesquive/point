@@ -42,6 +42,8 @@ archives:
       - LICENSE*
       - README*
       - CHANGELOG*
+      - pkg/services/*
+      - pkg/config.example.yml
 
 checksum:
   name_template: '{{ .ProjectName }}_v{{ .Version }}_checksums.txt'
