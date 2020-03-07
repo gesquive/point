@@ -22,7 +22,7 @@ const (
 type Server struct {
 }
 
-// NewServer creates a new dispatch server
+// NewServer creates a new reflect server
 func NewServer() *Server {
 	s := new(Server)
 

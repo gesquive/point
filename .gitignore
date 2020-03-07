@@ -7,4 +7,7 @@ scripts/
 *.log
 
 config*.yml
+!docker/config.yml
+!.circleci/config.yml
+!pkg/config.example.yml
 reflect

@@ -1,7 +1,9 @@
 # reflect
-[![Travis CI](https://img.shields.io/travis/gesquive/reflect/master.svg?style=flat-square)](https://travis-ci.org/gesquive/reflect)
 [![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/gesquive/reflect/blob/master/LICENSE)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/gesquive/reflect)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/gesquive/reflect)
+[![Build Status](https://img.shields.io/circleci/build/github/gesquive/reflect?style=flat-square)](https://circleci.com/gh/gesquive/reflect)
+[![Coverage Report](https://img.shields.io/codecov/c/gh/gesquive/reflect?style=flat-square)](https://codecov.io/gh/gesquive/reflect)
+[![Docker Pulls](https://img.shields.io/docker/pulls/gesquive/reflect?style=flat-square)](https://hub.docker.com/r/gesquive/reflect)
 
 A web client info server.
 
@@ -10,7 +12,7 @@ It provides endpoints to see web client information like: public IP, proxy list,
 ## Installing
 
 ### Compile
-This project has been tested with go1.9+. Just run `go get -u github.com/gesquive/reflect` and the executable should be built for you automatically in your `$GOPATH`.
+This project has only been tested with go1.11+. To compile just run `go get -u github.com/gesquive/reflect` and the executable should be built for you automatically in your `$GOPATH`. This project uses go mods, so you might need to set `GO111MODULE=on` in order for `go get` to complete properly.
 
 Optionally you can clone the repo and run `make install` to build and copy the executable to `/usr/local/bin/` with correct permissions.
 
@@ -19,6 +21,15 @@ Alternately, you can download the latest release for your platform from [github]
 
 Once you have an executable, make sure to copy it somewhere on your path like `/usr/local/bin` or `C:/Program Files/`.
 If on a \*nix/mac system, make sure to run `chmod +x /path/to/reflect`.
+
+### Docker
+You can also run reflect from the provided [Docker image](https://hub.docker.com/r/gesquive/reflect) by providing a configuration file:
+
+```shell
+docker run -d -p 2626:2626 -v $PWD/docker:/config reflect:latest
+```
+
+For more details read the [Docker image documentation](https://hub.docker.com/r/gesquive/reflect).
 
 ## Configuration
 
@@ -61,9 +72,8 @@ Flags:
   -a, --address string    The IP address to bind the web server too (default "0.0.0.0")
       --config string     Path to a specific config file (default "./config.yml")
   -l, --log-file string   Path to log file (default "/var/log/reflect.log")
-  -p, --port int          The port to bind the webserver too (default 8080)
-  -v, --verbose           Print logs to stdout instead of file
-      --version           Display the version number and exit
+  -p, --port int          The port to bind the webserver too (default 2626)
+      --version           Display the version info and exit
 ```
 
 Optionally, a hidden debug flag is available in case you need additional output.
