@@ -26,7 +26,7 @@ If on a \*nix/mac system, make sure to run `chmod +x /path/to/reflect`.
 You can also run reflect from the provided [Docker image](https://hub.docker.com/r/gesquive/reflect) by providing a configuration file:
 
 ```shell
-docker run -d -p 2626:2626 -v $PWD/docker:/config reflect:latest
+docker run -d -p 2626:2626 -v $PWD/docker:/config gesquive/reflect:latest
 ```
 
 For more details read the [Docker image documentation](https://hub.docker.com/r/gesquive/reflect).
