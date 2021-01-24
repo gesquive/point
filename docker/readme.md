@@ -1,8 +1,8 @@
 # [gesquive/reflect](https://github.com/gesquive/reflect)
 [![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/gesquive/reflect/blob/master/LICENSE)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/gesquive/reflect)
-[![Pipeline Status](https://img.shields.io/gitlab/pipeline/gesquive/reflect?style=flat-square)](https://gitlab.com/gesquive/reflect/pipelines)
-[![Coverage Report](https://gitlab.com/gesquive/reflect/badges/master/coverage.svg?style=flat-square)](https://gesquive.gitlab.io/reflect/coverage.html)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/gesquive/reflect)
+[![Build Status](https://img.shields.io/circleci/build/github/gesquive/reflect?style=flat-square)](https://circleci.com/gh/gesquive/reflect)
+[![Coverage Report](https://img.shields.io/codecov/c/gh/gesquive/reflect?style=flat-square)](https://codecov.io/gh/gesquive/reflect)
 [![Github Release](https://img.shields.io/github/v/tag/gesquive/reflect?style=flat-square)](https://github.com/gesquive/reflect)
 
 # Supported Architectures
