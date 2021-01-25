@@ -62,9 +62,9 @@ func init() {
 
 	RootCmd.PersistentFlags().BoolVar(&showVersion, "version", false,
 		"Display the version info and exit")
-	RootCmd.PersistentFlags().StringP("address", "a", "0.0.0.0",
+	RootCmd.PersistentFlags().StringP("web-address", "a", "0.0.0.0",
 		"The IP address to bind the web server too")
-	RootCmd.PersistentFlags().IntP("port", "p", 2626,
+	RootCmd.PersistentFlags().IntP("web-port", "p", 2626,
 		"The port to bind the webserver too")
 
 	RootCmd.PersistentFlags().BoolVarP(&debug, "debug", "D", false,
@@ -75,17 +75,20 @@ func init() {
 	viper.AutomaticEnv()
 	viper.BindEnv("config")
 	viper.BindEnv("log_file")
-	viper.BindEnv("address")
-	viper.BindEnv("port")
+	viper.BindEnv("web_address")
+	viper.BindEnv("web_port")
 
 	viper.BindPFlag("config", RootCmd.PersistentFlags().Lookup("config"))
 	viper.BindPFlag("log_file", RootCmd.PersistentFlags().Lookup("log-file"))
-	viper.BindPFlag("web.address", RootCmd.PersistentFlags().Lookup("address"))
-	viper.BindPFlag("web.port", RootCmd.PersistentFlags().Lookup("port"))
+	viper.BindPFlag("web.address", RootCmd.PersistentFlags().Lookup("web-address"))
+	viper.BindPFlag("web.port", RootCmd.PersistentFlags().Lookup("web-port"))
 
 	viper.SetDefault("log_file", "/var/log/reflect.log")
 	viper.SetDefault("web.address", "0.0.0.0")
 	viper.SetDefault("web.port", 2626)
+
+	dotReplacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(dotReplacer)
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -69,11 +69,11 @@ Usage:
   reflect [flags]
 
 Flags:
-  -a, --address string    The IP address to bind the web server too (default "0.0.0.0")
-      --config string     Path to a specific config file (default "./config.yml")
-  -l, --log-file string   Path to log file (default "/var/log/reflect.log")
-  -p, --port int          The port to bind the webserver too (default 2626)
-      --version           Display the version info and exit
+      --config string        Path to a specific config file (default "./config.yml")
+  -l, --log-file string      Path to log file (default "/var/log/reflect.log")
+      --version              Display the version info and exit
+  -a, --web-address string   The IP address to bind the web server too (default "0.0.0.0")
+  -p, --web-port int         The port to bind the webserver too (default 2626)
 ```
 
 Optionally, a hidden debug flag is available in case you need additional output.
